@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 35 20% 92%;
+    --secondary-foreground: 35 20% 15%;
+    --muted: 35 20% 96%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 210 100% 85%;
+    --accent-foreground: 210 100% 15%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 210 100% 50%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 35 20% 8%;
+    --secondary-foreground: 35 20% 85%;
+    --muted: 35 20% 4%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 210 100% 25%;
+    --accent-foreground: 210 100% 85%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 210 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border transition-colors duration-200;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/10 dark:bg-black/10 backdrop-blur-md border border-white/20 dark:border-white/10;
+  }
+
+  .glass-strong {
+    @apply bg-white/20 dark:bg-black/20 backdrop-blur-lg border border-white/30 dark:border-white/20;
+  }
+
+  .soft-blue-gradient {
+    @apply bg-gradient-to-r from-soft-blue-400 to-soft-blue-600;
+  }
+
+  .soft-blue-glow {
+    box-shadow: 0 0 20px rgba(179, 212, 252, 0.3);
+  }
+
+  .dark .soft-blue-glow {
+    box-shadow: 0 0 20px rgba(179, 212, 252, 0.2);
+  }
+
+  /* Enhanced dark mode styles */
+  .dark .hero-bg {
+    background: linear-gradient(
+      135deg,
+      rgba(179, 212, 252, 0.05) 0%,
+      rgba(245, 240, 227, 0.05) 50%,
+      rgba(179, 212, 252, 0.02) 100%
+    );
+  }
+
+  .hero-bg {
+    background: linear-gradient(
+      135deg,
+      rgba(179, 212, 252, 0.1) 0%,
+      rgba(245, 240, 227, 0.1) 50%,
+      rgba(179, 212, 252, 0.05) 100%
+    );
+  }
+
+  /* Card hover effects for both themes */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl hover:shadow-soft-blue-200/20 dark:hover:shadow-soft-blue-900/20;
+  }
+
+  /* Button variants for both themes */
+  .btn-soft-blue {
+    @apply bg-soft-blue-500 hover:bg-soft-blue-600 text-white dark:bg-soft-blue-600 dark:hover:bg-soft-blue-700;
+  }
+
+  .btn-soft-blue-outline {
+    @apply border-soft-blue-300 text-soft-blue-700 hover:bg-soft-blue-50 dark:border-soft-blue-700 dark:text-soft-blue-300 dark:hover:bg-soft-blue-900/20;
+  }
+}
+
+/* Arabic font optimization */
+.font-arabic {
+  font-family: var(--font-cairo), "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+/* RTL specific styles */
+[dir="rtl"] .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+/* Smooth theme transitions */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Roulette animation styles */
+.roulette-container {
+  perspective: 1000px;
+}
+
+.roulette-card {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* WhatsApp floating button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .whatsapp-float {
+    position: relative;
+    bottom: auto;
+    left: auto;
+  }
+}
+
+/* Enhanced scrollbar for dark mode */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-soft-blue-300 dark:bg-soft-blue-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-soft-blue-400 dark:bg-soft-blue-600;
+}
+
+/* Focus styles for accessibility */
+.focus-visible:focus-visible {
+  @apply outline-none ring-2 ring-soft-blue-500 ring-offset-2 ring-offset-background;
+}
